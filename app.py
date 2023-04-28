@@ -18,7 +18,7 @@ class Todo(db.Model):
 
 with app.app_context():
     db.create_all()
-
+# This is the base route of the application, accepts POST and GET
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
