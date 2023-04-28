@@ -18,7 +18,7 @@ class Todo(db.Model):
 
 with app.app_context():
     db.create_all()
-
+# I'm just adding this inane comment for no reason
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
