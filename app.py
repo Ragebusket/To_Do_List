@@ -22,9 +22,14 @@ with app.app_context():
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-        task_content = request.form['content']
-        new_task = Todo(content=task_content)
 
+        task_content = request.form['content']
+        if len(task_content) <= 0:
+            tasks = Todo.query.order_by(Todo.date_created).all()
+            return render_template('index.html', tasks=tasks)
+        
+        new_task = Todo(content=task_content)
+    
         try:
             db.session.add(new_task)
             db.session.commit()
